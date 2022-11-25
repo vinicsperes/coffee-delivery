@@ -14,11 +14,11 @@ interface Coffee {
   price: number
 }
 
-interface CardCoffeeProps {
+interface CoffeeCardProps {
   coffee: Coffee
 }
 
-export function CardCoffee({ coffee }: CardCoffeeProps) {
+export function CoffeeCard({ coffee }: CoffeeCardProps) {
   const theme = useTheme() as DefaultTheme
   return (
     <CardContainer>

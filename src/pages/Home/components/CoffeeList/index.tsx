@@ -1,4 +1,4 @@
-import { CardCoffee } from '../CardCoffee'
+import { CardCoffee } from '../CoffeeCard'
 import { CoffeeListWrapper, OurCoffees } from './style'
 import { coffees } from '../../../../data/coffeList'
 import { Title } from '../../../../styles/themes/textRule'
