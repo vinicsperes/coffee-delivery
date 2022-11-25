@@ -28,7 +28,11 @@ export function CardCoffee({ coffee }: CardCoffeeProps) {
       />
       <div className="tagList">
         {coffee.tags.map((tag) => {
-          return <CoffeeTag key={`${coffee.id}-${tag}`}>{tag}</CoffeeTag>
+          return (
+            <CoffeeTag key={`${coffee.id}-${tag}`}>
+              {tag.toUpperCase()}
+            </CoffeeTag>
+          )
         })}
       </div>
       <></>
