@@ -4,30 +4,19 @@
   box-sizing: border-box;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
 body {
   background: var(--background);
   -webkit-font-smoothing: antialiased;
-}
 
-.titleXL{
-  font-family: 'Baloo 2', sans-serif;
-  font-weight: bolder;
-  font-size: 3rem;
-  line-height: 130%;
-}
-
-.regularL{
-  font-family: 'Roboto', sans-serif;
-  font-weight: normal;
-  line-height: 130%;
-  font-size: 1.25rem;
-}
-
-.regularM{
-  font-family: 'Roboto', sans-serif;
-  font-weight: normal;
-  line-height: 130%;
-  font-size: 1rem;
+  display: flex;
+  align-items: center;
 }
 
 body, input, textarea, button {
