@@ -45,7 +45,6 @@ export const CardContainer = styled.div`
         padding: 8px;
         border-radius: 8px;
         background: ${(props) => props.theme.palette.purple.dark};
-        position: relative;
       }
     }
   }
