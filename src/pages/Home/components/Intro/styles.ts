@@ -5,10 +5,12 @@ import { rgba } from 'polished'
 export const IntroArticle = styled.article`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 3.5rem;
 
-  padding: 5.75rem 10rem;
+  width: 100%;
+  height: 34rem;
+  margin-top: 6.5rem;
 
   background: ${(props) => `url(${backgroundIntro}) no-repeat center,
     linear-gradient(
@@ -19,20 +21,44 @@ export const IntroArticle = styled.article`
       )`};
   background-size: cover;
 
-  @media only screen and (max-width: 1100px) {
+  @media only screen and (max-width: 950px) {
     display: flex;
     flex-direction: column;
-    padding: 0rem;
+    justify-content: center;
+    padding: 2rem;
     img {
-      width: 70%;
+      width: 80%;
+    }
+  }
+  @media only screen and (max-width: 1300px) {
+    display: flex;
+    flex-direction: column;
+    img {
+      width: 40%;
     }
   }
 
   .container {
-    width: 50%;
+    width: 100%;
+    max-width: 70rem;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media (max-width: 1050px) {
+      align-items: center;
+      justify-content: center;
+      img {
+        display: none;
+      }
+    }
   }
 
   .title {
+    max-width: 36.75rem;
+    width: 100%;
     line-height: 2rem;
 
     h2 {
@@ -54,4 +80,10 @@ export const ItemList = styled.div`
   height: calc(100%);
 
   margin-top: 4.125rem;
+
+  @media (max-width: 1050px) {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+  }
 `

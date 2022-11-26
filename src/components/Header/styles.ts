@@ -1,13 +1,36 @@
 import styled from 'styled-components'
 import '../../global.css'
 
-export const HeaderContainer = styled.header`
+export const HeaderComponent = styled.header`
   display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 6.5rem;
+  width: 100%;
+  background: ${(props) => props.theme.palette.background};
+  position: fixed;
+`
+
+export const HeaderContainer = styled.div`
+  @media (max-width: 600px) {
+    padding: 1rem 0;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  @media (max-width: 1300px) {
+    padding: 1rem 2rem;
+  }
+
+  display: flex;
+  align-content: center;
   justify-content: space-between;
+  align-items: center;
 
-  background: ${(props) => props.theme.background};
-
-  padding: 2rem 10rem;
+  width: 100%;
+  max-width: 70rem;
+  margin-right: auto;
+  margin-left: auto;
 
   .actions {
     display: flex;
@@ -38,7 +61,7 @@ export const HeaderContainer = styled.header`
     background: ${(props) => props.theme.palette.yellow.light};
     position: relative;
 
-    span {
+    .itemCounter {
       position: absolute;
       right: -0.5rem;
       top: -0.5rem;
