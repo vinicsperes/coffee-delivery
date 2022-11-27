@@ -20,7 +20,9 @@ export const IntroArticle = styled.article`
       ${props.theme.palette.background} 100%
       )`};
   background-size: cover;
-
+  @media only screen and (max-width: 700px) {
+    margin-top: 10rem;
+  }
   @media only screen and (max-width: 950px) {
     display: flex;
     flex-direction: column;
@@ -33,6 +35,7 @@ export const IntroArticle = styled.article`
   @media only screen and (max-width: 1300px) {
     display: flex;
     flex-direction: column;
+    padding: 8rem;
     img {
       width: 40%;
     }
