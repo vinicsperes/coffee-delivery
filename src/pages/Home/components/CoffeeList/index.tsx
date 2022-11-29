@@ -1,5 +1,5 @@
 import { CoffeeCard } from '../CoffeeCard'
-import { CoffeeListComponent, CoffeeListWrapper, OurCoffees } from './style'
+import { CoffeeListComponent, CoffeeListWrapper, OurCoffees } from './styles'
 import { coffees } from '../../../../data/coffeList'
 import { Title } from '../../../../styles/themes/textRule'
 
