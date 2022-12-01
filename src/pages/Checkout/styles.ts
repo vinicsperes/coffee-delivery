@@ -152,4 +152,8 @@ export const ConfirmOrderButton = styled.button`
     line-height: 160%;
     color: ${(props) => props.theme.palette.white};
   }
+
+  :hover {
+    background: ${(props) => props.theme.palette.yellow.dark};
+  }
 `
