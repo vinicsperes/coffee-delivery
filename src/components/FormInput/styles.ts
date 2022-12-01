@@ -5,7 +5,10 @@ export const InputContent = styled.input`
   border-width: 1px;
   border-style: solid;
   border-color: ${(props) => props.theme.palette.base.button};
-  color: ${(props) => props.theme.palette.base.input};
+
+  font-size: 14px;
+  color: ${(props) => props.theme.palette.base.text};
+  line-height: 130%;
 
   height: 2.625rem;
   width: 12.5rem;
