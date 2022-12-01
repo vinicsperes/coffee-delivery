@@ -20,4 +20,13 @@ export const InputContent = styled.input`
     font-size: 14px;
     color: ${(props) => props.theme.palette.base.label};
   }
+
+  :hover {
+    border-color: ${(props) => props.theme.palette.yellow.dark};
+  }
+
+  :focus {
+    outline: none;
+    border: 1px solid ${(props) => props.theme.palette.yellow.dark};
+  }
 `
