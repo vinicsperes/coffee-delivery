@@ -121,6 +121,7 @@ export const CoffeeSelected = styled.div`
 
 export const DeleteButton = styled.button`
   display: flex;
+  gap: 0.4rem;
   padding: 0.5rem;
   background: ${(props) => props.theme.palette.base.button};
   border-radius: 6px;
@@ -130,6 +131,10 @@ export const DeleteButton = styled.button`
     font-size: 12px;
     line-height: 160%;
     color: ${(props) => props.theme.palette.base.text};
+  }
+
+  :hover {
+    background: ${(props) => props.theme.palette.base.hover};
   }
 `
 export const ConfirmOrderButton = styled.button`
