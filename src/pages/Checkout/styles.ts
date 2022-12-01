@@ -82,7 +82,8 @@ export const SelectPaymentMethod = styled.div`
   display: flex;
   gap: 0.75rem;
 
-  div {
+  button {
+    border: none;
     display: flex;
     gap: 0.75rem;
     width: 11rem;
@@ -95,6 +96,18 @@ export const SelectPaymentMethod = styled.div`
       vertical-align: center;
     }
   }
+
+  button:is(:focus, :hover) {
+    padding: 0.9375rem;
+    border: 1px;
+    border-style: solid;
+    border-color: ${(props) => props.theme.palette.purple.main};
+    cursor: pointer;
+  }
+
+  /* button:focus {
+    border: 1px solid ${(props) => props.theme.palette.purple.main};
+  } */
 `
 
 export const CoffeeSelected = styled.div`
