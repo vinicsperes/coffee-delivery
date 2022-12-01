@@ -83,18 +83,18 @@ export function Checkout() {
             </div>
           </InfoSection>
           <SelectPaymentMethod>
-            <div>
+            <button>
               <CreditCard size={16} color={theme.palette.purple.main} />
               <p>CARTÃO DE CRÉDITO</p>
-            </div>
-            <div>
+            </button>
+            <button>
               <Bank size={16} color={theme.palette.purple.main} />
               <p>CARTÃO DE DÉBITO</p>
-            </div>
-            <div>
+            </button>
+            <button>
               <Money size={16} color={theme.palette.purple.main} />
               <p>DINHEIRO</p>
-            </div>
+            </button>
           </SelectPaymentMethod>
         </CardContent>
       </div>
