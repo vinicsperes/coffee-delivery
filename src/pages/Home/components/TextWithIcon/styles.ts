@@ -9,8 +9,15 @@ export const ItemGrid = styled.div`
   padding: 0.75rem 0.75rem 0.75rem 0;
   gap: 0.75rem;
 
-  p {
-    color: ${(props) => props.theme.palette.base.text};
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    gap: 0;
+    p {
+      color: ${(props) => props.theme.palette.base.text};
+    }
   }
 `
 interface IconCircleProps {

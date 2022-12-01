@@ -6,13 +6,26 @@ interface textWithIconProps {
   icon: ReactNode
   text: string
   color: string
+  alt?: string
+  weight?: string
 }
 
-export function TextWithIcon({ icon, text, color }: textWithIconProps) {
+export function TextWithIcon({
+  icon,
+  text,
+  color,
+  alt,
+  weight,
+}: textWithIconProps) {
   return (
     <ItemGrid>
       <IconCircle variant={color}>{icon}</IconCircle>
-      <Text size="m">{text}</Text>
+      <div className="wrapper">
+        <Text size="m">{text}</Text>
+        <Text size="m" weight={weight}>
+          {alt}
+        </Text>
+      </div>
     </ItemGrid>
   )
 }
