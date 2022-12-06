@@ -1,6 +1,6 @@
 import { CardContent } from '../../styles'
 import {
-  ChartContent,
+  CartContent,
   CoffeeSelected,
   ConfirmOrderButton,
   DeleteButton,
@@ -12,12 +12,11 @@ import { Text } from '../../../../styles/themes/textRule'
 import { Trash } from 'phosphor-react'
 import { DefaultTheme } from '../../../../styles/themes/default'
 import { useTheme } from 'styled-components'
-
-export function Chart() {
+export function Cart() {
   const theme = useTheme() as DefaultTheme
 
   return (
-    <ChartContent>
+    <CartContent>
       <CardContent>
         {coffees.slice(0, 3).map((coffee) => (
           <>
@@ -29,7 +28,7 @@ export function Chart() {
               <div className="content">
                 <Text color={'subtitle'}>{coffee.name}</Text>
                 <div className="actions">
-                  <Counter />
+                  <Counter coffeeId={coffee.id} />
                   <DeleteButton>
                     <Trash size={16} color={theme.palette.purple.main} />
                     <p>REMOVER</p>
@@ -67,6 +66,6 @@ export function Chart() {
           <p>CONFIRMAR PEDIDO</p>
         </ConfirmOrderButton>
       </CardContent>
-    </ChartContent>
+    </CartContent>
   )
 }

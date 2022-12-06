@@ -16,7 +16,7 @@ import {
   SelectPaymentMethod,
 } from './styles'
 
-import { Chart } from './components/Chart'
+import { Cart } from './components/Cart'
 
 export function Checkout() {
   const theme = useTheme() as DefaultTheme
@@ -99,7 +99,7 @@ export function Checkout() {
           Cafés selecionados
         </Title>
 
-        <Chart />
+        <Cart />
       </div>
     </CheckoutComponent>
   )

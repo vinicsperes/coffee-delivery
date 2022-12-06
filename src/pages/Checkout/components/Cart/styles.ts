@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const ChartContent = styled.main``
+export const CartContent = styled.main``
 
 export const CoffeeSelected = styled.div`
   display: flex;
