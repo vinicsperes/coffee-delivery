@@ -13,8 +13,16 @@ export const CounterContainer = styled.div`
   span {
     color: ${(props) => props.theme.palette.purple.main};
 
-    p {
+    button {
       display: flex;
+      background: none;
+      color: inherit;
+      border: none;
+      font: inherit;
+      cursor: pointer;
+      :hover {
+        color: ${(props) => props.theme.palette.purple.dark};
+      }
       svg {
         vertical-align: center;
       }

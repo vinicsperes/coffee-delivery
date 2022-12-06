@@ -6,17 +6,17 @@ export function Counter() {
   return (
     <CounterContainer>
       <span>
-        <p>
+        <button>
           <Minus size={14} weight="bold" />
-        </p>
+        </button>
       </span>
       <Text size="m" color="title">
-        1
+        {0}
       </Text>
       <span>
-        <p>
+        <button>
           <Plus size={14} weight="bold" />
-        </p>
+        </button>
       </span>
     </CounterContainer>
   )
