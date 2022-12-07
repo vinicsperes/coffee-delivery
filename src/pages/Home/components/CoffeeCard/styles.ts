@@ -39,12 +39,18 @@ export const CardContainer = styled.div`
       gap: 0.5rem;
       margin-left: 1.4375rem;
 
-      .cart {
+      .cartButton {
+        cursor: pointer;
         display: flex;
         align-items: center;
         padding: 8px;
         border-radius: 8px;
         background: ${(props) => props.theme.palette.purple.dark};
+        border: none;
+
+        :hover {
+          background: ${(props) => props.theme.palette.purple.main};
+        }
       }
     }
   }
