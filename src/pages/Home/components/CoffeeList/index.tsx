@@ -1,6 +1,6 @@
 import { CoffeeCard } from '../CoffeeCard'
 import { CoffeeListComponent, CoffeeListWrapper, OurCoffees } from './styles'
-import { coffees } from '../../../../data/coffeList'
+import { coffees } from '../../../../data/coffeeList'
 import { Title } from '../../../../styles/themes/textRule'
 
 export function CoffeeList() {
