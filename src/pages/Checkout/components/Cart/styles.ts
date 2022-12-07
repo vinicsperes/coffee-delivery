@@ -1,6 +1,36 @@
 import styled from 'styled-components'
 
-export const CartContent = styled.main``
+export const CartContent = styled.main`
+  #CartCardContent {
+    width: 30rem;
+  }
+
+  .purpleBackground {
+    background: ${(props) => props.theme.palette.purple.light};
+  }
+
+  .emptyCardContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: ${(props) => props.theme.palette.yellow.dark};
+
+    .iconWrapper {
+      display: flex;
+      align-items: center;
+
+      svg {
+        margin-bottom: 0.5rem;
+        color: ${(props) => props.theme.palette.purple.main};
+      }
+    }
+
+    p {
+      font-family: ${({ theme }) => theme.fonts.baloo};
+      color: ${(props) => props.theme.palette.purple.dark};
+    }
+  }
+`
 
 export const CoffeeSelected = styled.div`
   display: flex;

@@ -5,20 +5,31 @@ import {
   ConfirmOrderButton,
   DeleteButton,
 } from './styles'
-
-import { coffees } from '../../../../data/coffeList'
 import { Counter } from '../../../../components/Counter'
 import { Text } from '../../../../styles/themes/textRule'
-import { Trash } from 'phosphor-react'
+import { ArrowRight, Coffee, ShoppingCart, Trash } from 'phosphor-react'
 import { DefaultTheme } from '../../../../styles/themes/default'
 import { useTheme } from 'styled-components'
+import { useContext } from 'react'
+import { CartContext } from '../../../../contexts/CartContext'
+
 export function Cart() {
   const theme = useTheme() as DefaultTheme
 
+  const { cartItems, deleteFromCart, coffeesInCartQuantity } =
+    useContext(CartContext)
+
+  function handleDeleteCoffee(coffeeId: number) {
+    deleteFromCart(coffeeId)
+  }
+
+  const changeCartBackground =
+    coffeesInCartQuantity === 0 ? 'purpleBackground' : ''
+
   return (
     <CartContent>
-      <CardContent>
-        {coffees.slice(0, 3).map((coffee) => (
+      <CardContent id="CartCardContent" className={changeCartBackground}>
+        {cartItems.map((coffee) => (
           <>
             <CoffeeSelected key={coffee.id}>
               <img
@@ -28,43 +39,60 @@ export function Cart() {
               <div className="content">
                 <Text color={'subtitle'}>{coffee.name}</Text>
                 <div className="actions">
-                  <Counter coffeeId={coffee.id} />
-                  <DeleteButton>
+                  <Counter quantity={coffee.quantity} />
+                  <DeleteButton onClick={() => handleDeleteCoffee(coffee.id)}>
                     <Trash size={16} color={theme.palette.purple.main} />
                     <p>REMOVER</p>
                   </DeleteButton>
                 </div>
               </div>
               <Text size={'m'} weight={'bold'}>
-                R$ {coffee.price.toFixed(2).toString().replace('.', ',')}
+                R${' '}
+                {(coffee.price * coffee.quantity)
+                  .toFixed(2)
+                  .toString()
+                  .replace('.', ',')}
               </Text>
             </CoffeeSelected>
             <hr />
           </>
         ))}
+        {coffeesInCartQuantity > 0 && (
+          <div className="itemsPrice">
+            <div>
+              <Text size="s">Total de itens</Text>
+              <Text size="m">R$ 19,20</Text>
+            </div>
+            <div>
+              <Text size="s">Entrega</Text>
+              <Text size="m">R$ 7,70</Text>
+            </div>
+            <div>
+              <Text size="l" weight="bold" color="subtitle">
+                Total
+              </Text>
+              <Text size="l" weight="bold" color="subtitle">
+                R$ 26,90
+              </Text>
+            </div>
+            <ConfirmOrderButton>
+              <p>CONFIRMAR PEDIDO</p>
+            </ConfirmOrderButton>
+          </div>
+        )}
+        {coffeesInCartQuantity === 0 && (
+          <div className="emptyCardContent">
+            <div className="iconWrapper">
+              <Coffee size={64} weight="light" />
+              <ArrowRight size={32} weight="bold" />
+              <ShoppingCart size={64} weight="light" />
+            </div>
 
-        <div className="itemsPrice">
-          <div>
-            <Text size="s">Total de itens</Text>
-            <Text size="m">R$ 19,20</Text>
-          </div>
-          <div>
-            <Text size="s">Entrega</Text>
-            <Text size="m">R$ 7,70</Text>
-          </div>
-          <div>
-            <Text size="l" weight="bold" color="subtitle">
-              Total
-            </Text>
-            <Text size="l" weight="bold" color="subtitle">
-              R$ 26,90
+            <Text size="m" color={'subtitle'}>
+              Seu carrinho está vazio...
             </Text>
           </div>
-        </div>
-
-        <ConfirmOrderButton>
-          <p>CONFIRMAR PEDIDO</p>
-        </ConfirmOrderButton>
+        )}
       </CardContent>
     </CartContent>
   )
