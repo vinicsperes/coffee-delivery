@@ -2,20 +2,26 @@ import { Minus, Plus } from 'phosphor-react'
 import { Text } from '../../styles/themes/textRule'
 import { CounterContainer } from './styles'
 
-export function Counter() {
+interface CounterProps {
+  quantity: number
+  onIncrease: () => void
+  onDecrease: () => void
+}
+
+export function Counter({ quantity, onIncrease, onDecrease }: CounterProps) {
   return (
     <CounterContainer>
       <span>
         <button>
-          <Minus size={14} weight="bold" />
+          <Minus onClick={onDecrease} size={14} weight="bold" />
         </button>
       </span>
       <Text size="m" color="title">
-        {0}
+        {quantity}
       </Text>
       <span>
         <button>
-          <Plus size={14} weight="bold" />
+          <Plus onClick={onIncrease} size={14} weight="bold" />
         </button>
       </span>
     </CounterContainer>

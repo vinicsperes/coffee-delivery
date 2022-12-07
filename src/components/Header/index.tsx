@@ -5,9 +5,12 @@ import { DefaultTheme } from '../../styles/themes/default'
 import { useTheme } from 'styled-components'
 import { Text } from '../../styles/themes/textRule'
 import { NavLink } from 'react-router-dom'
+import { useContext } from 'react'
+import { CartContext } from '../../contexts/CartContext'
 
 export function Header() {
   const theme = useTheme() as DefaultTheme
+  const { coffeesInCartQuantity } = useContext(CartContext)
 
   return (
     <HeaderComponent>
@@ -35,7 +38,7 @@ export function Header() {
                 weight="bold"
                 color={theme.palette.white}
               >
-                3
+                {coffeesInCartQuantity}
               </Text>
             </div>
           </NavLink>
