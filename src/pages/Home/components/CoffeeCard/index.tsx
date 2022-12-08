@@ -2,7 +2,7 @@ import { ShoppingCart } from 'phosphor-react'
 import { useContext, useState } from 'react'
 import { useTheme } from 'styled-components'
 import { Counter } from '../../../../components/Counter'
-import { CartContext } from '../../../../contexts/CartContext'
+import { CartContext, CartItem } from '../../../../contexts/CartContext'
 import { DefaultTheme } from '../../../../styles/themes/default'
 import { Text, Title } from '../../../../styles/themes/textRule'
 import { CardContainer, CoffeeTag, Description, Price } from './styles'
@@ -18,14 +18,20 @@ export interface Coffee {
 
 interface CoffeeCardProps {
   coffee: Coffee
+  cartItems: CartItem[]
 }
 
-export function CoffeeCard({ coffee }: CoffeeCardProps) {
+export function CoffeeCard({ coffee, cartItems }: CoffeeCardProps) {
+  const theme = useTheme() as DefaultTheme
   const { addToCart } = useContext(CartContext)
 
-  const [quantity, setQuantity] = useState(1)
+  const foundCoffee = cartItems.find((obj) => obj.id === coffee.id)
 
-  const theme = useTheme() as DefaultTheme
+  const [quantity, setQuantity] = useState(() =>
+    foundCoffee ? foundCoffee.quantity : 1,
+  )
+
+  console.log('quantity render -> ' + quantity)
 
   function handleIncrease() {
     setQuantity(quantity + 1)
@@ -40,7 +46,7 @@ export function CoffeeCard({ coffee }: CoffeeCardProps) {
       ...coffee,
       quantity,
     }
-    console.log(coffeeToAdd)
+
     addToCart(coffeeToAdd)
   }
 
