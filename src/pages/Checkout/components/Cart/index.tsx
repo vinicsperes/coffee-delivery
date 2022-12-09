@@ -18,8 +18,11 @@ export function Cart() {
 
   const {
     cartItems,
+    deleteFromCart,
     coffeesInCartQuantity,
+    addToCart,
     totalCoffeesPrice,
+    decreaseCoffeInCart,
     totalPrice,
   } = useContext(CartContext)
 
@@ -43,7 +46,11 @@ export function Cart() {
               <div className="content">
                 <Text color={'subtitle'}>{coffee.name}</Text>
                 <div className="actions">
-                  <Counter quantity={coffee.quantity} />
+                  <Counter
+                    quantity={coffee.quantity}
+                    onIncrease={() => addToCart(coffee, true)}
+                    onDecrease={() => decreaseCoffeInCart(coffee)}
+                  />
                   <DeleteButton onClick={() => handleDeleteCoffee(coffee.id)}>
                     <Trash size={16} color={theme.palette.purple.main} />
                     <p>REMOVER</p>

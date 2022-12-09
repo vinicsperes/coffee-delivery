@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const CartContent = styled.main`
   #CartCardContent {
-    width: 30rem;
+    width: 31rem;
   }
 
   .purpleBackground {
