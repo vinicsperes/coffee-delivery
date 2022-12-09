@@ -12,7 +12,8 @@ interface CartContextType {
   totalPrice: string
   totalCoffeesPrice: string
   coffeesInCartQuantity: number
-  addToCart: (cooffee: CartItem) => void
+  addToCart: (cooffee: CartItem, increase?: boolean) => void
+  decreaseCoffeInCart: (coffee: CartItem) => void
   deleteFromCart: (cooffeeId: number) => void
 }
 
@@ -44,17 +45,35 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     .toFixed(2)
     .toString()
     .replace('.', ',')
+
+  function addToCart(coffee: CartItem, increase?: boolean) {
     setCartItems(
       produce((draft) => {
         const find = draft.find((find) => find.id === coffee.id)
         if (find) {
-          find.quantity = coffee.quantity
+          if (increase) {
+            find.quantity = coffee.quantity + 1
+          } else {
+            find.quantity = coffee.quantity
+          }
         } else {
           draft.push(coffee)
         }
       }),
     )
-    console.log('Item Adicionado ao carrinho')
+  }
+
+  function decreaseCoffeInCart(coffee: CartItem) {
+    setCartItems(
+      produce((draft) => {
+        const find = draft.find((find) => find.id === coffee.id)
+        if (find!.quantity > 1) {
+          find!.quantity = coffee.quantity - 1
+        } else {
+          deleteFromCart(coffee.id)
+        }
+      }),
+    )
   }
 
   function deleteFromCart(coffeeId: number) {
@@ -76,6 +95,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         addToCart,
         deleteFromCart,
         coffeesInCartQuantity,
+        decreaseCoffeInCart,
       }}
     >
       {children}
