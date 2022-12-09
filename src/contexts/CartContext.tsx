@@ -9,6 +9,8 @@ export interface CartItem extends Coffee {
 
 interface CartContextType {
   cartItems: CartItem[]
+  totalPrice: string
+  totalCoffeesPrice: string
   coffeesInCartQuantity: number
   addToCart: (cooffee: CartItem) => void
   deleteFromCart: (cooffeeId: number) => void
@@ -28,7 +30,20 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     0,
   )
 
-  function addToCart(coffee: any) {
+  const coffeesInCartPrice = cartItems.reduce(
+    (prevVal, coffee) => (prevVal += coffee.price * coffee.quantity),
+    0,
+  )
+
+  const totalPrice = (coffeesInCartPrice + 7.7)
+    .toFixed(2)
+    .toString()
+    .replace('.', ',')
+
+  const totalCoffeesPrice = coffeesInCartPrice
+    .toFixed(2)
+    .toString()
+    .replace('.', ',')
     setCartItems(
       produce((draft) => {
         const find = draft.find((find) => find.id === coffee.id)
@@ -56,6 +71,8 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     <CartContext.Provider
       value={{
         cartItems,
+        totalPrice,
+        totalCoffeesPrice,
         addToCart,
         deleteFromCart,
         coffeesInCartQuantity,

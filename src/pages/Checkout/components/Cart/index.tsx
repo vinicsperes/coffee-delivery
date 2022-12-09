@@ -16,8 +16,12 @@ import { CartContext } from '../../../../contexts/CartContext'
 export function Cart() {
   const theme = useTheme() as DefaultTheme
 
-  const { cartItems, deleteFromCart, coffeesInCartQuantity } =
-    useContext(CartContext)
+  const {
+    cartItems,
+    coffeesInCartQuantity,
+    totalCoffeesPrice,
+    totalPrice,
+  } = useContext(CartContext)
 
   function handleDeleteCoffee(coffeeId: number) {
     deleteFromCart(coffeeId)
@@ -61,7 +65,7 @@ export function Cart() {
           <div className="itemsPrice">
             <div>
               <Text size="s">Total de itens</Text>
-              <Text size="m">R$ 19,20</Text>
+              <Text size="m">R$ {totalCoffeesPrice}</Text>
             </div>
             <div>
               <Text size="s">Entrega</Text>
@@ -72,7 +76,7 @@ export function Cart() {
                 Total
               </Text>
               <Text size="l" weight="bold" color="subtitle">
-                R$ 26,90
+                R$ {totalPrice}
               </Text>
             </div>
             <ConfirmOrderButton>
