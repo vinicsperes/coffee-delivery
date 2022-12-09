@@ -17,6 +17,21 @@ export const CardContent = styled.div`
   margin-top: 0.75rem;
 
   form {
+    input:-webkit-autofill {
+      -webkit-text-fill-color: ${(props) =>
+        props.theme.palette.base.text} !important;
+      -webkit-text-size-adjust: 14px !important;
+    }
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 30px
+        ${(props) => props.theme.palette.base.input} inset !important;
+      padding: 0.75rem;
+      line-height: 130% !important;
+    }
+
     margin-top: 2rem;
 
     .wrapper {
