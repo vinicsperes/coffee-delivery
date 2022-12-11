@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const CartContent = styled.main`
   #CartCardContent {
-    width: 28rem;
+    width: 30rem;
   }
 
   .purpleBackground {
@@ -34,7 +34,7 @@ export const CartContent = styled.main`
 
 export const CoffeeSelected = styled.div`
   display: flex;
-  gap: 1.25rem;
+  gap: 1rem;
 
   img {
     width: 4rem;
