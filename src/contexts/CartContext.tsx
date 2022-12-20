@@ -77,7 +77,6 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
   }
 
   function deleteFromCart(coffeeId: number) {
-    console.log('deletando o id -> ' + coffeeId)
     setCartItems(
       produce((draft) => {
         const index = draft.findIndex((find) => find.id === coffeeId)

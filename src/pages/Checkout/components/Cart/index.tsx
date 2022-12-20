@@ -7,7 +7,7 @@ import {
 } from './styles'
 import { Counter } from '../../../../components/Counter'
 import { Text } from '../../../../styles/themes/textRule'
-import { ArrowRight, Coffee, ShoppingCart, Trash } from 'phosphor-react'
+import { Trash } from 'phosphor-react'
 import { DefaultTheme } from '../../../../styles/themes/default'
 import { useTheme } from 'styled-components'
 import { useContext } from 'react'
@@ -19,23 +19,22 @@ export function Cart() {
   const {
     cartItems,
     deleteFromCart,
-    coffeesInCartQuantity,
     addToCart,
     totalCoffeesPrice,
     decreaseCoffeInCart,
     totalPrice,
+    coffeesInCartQuantity,
   } = useContext(CartContext)
+
+  const isActive = coffeesInCartQuantity > 0 ? 'active' : ''
 
   function handleDeleteCoffee(coffeeId: number) {
     deleteFromCart(coffeeId)
   }
 
-  const changeCartBackground =
-    coffeesInCartQuantity === 0 ? 'purpleBackground' : ''
-
   return (
     <CartContent>
-      <CardContent id="CartCardContent" className={changeCartBackground}>
+      <CardContent id="CartCardContent">
         {cartItems.map((coffee) => (
           <>
             <CoffeeSelected key={coffee.id}>
@@ -68,42 +67,27 @@ export function Cart() {
             <hr />
           </>
         ))}
-        {coffeesInCartQuantity > 0 && (
-          <div className="itemsPrice">
-            <div>
-              <Text size="s">Total de itens</Text>
-              <Text size="m">R$ {totalCoffeesPrice}</Text>
-            </div>
-            <div>
-              <Text size="s">Entrega</Text>
-              <Text size="m">R$ 7,70</Text>
-            </div>
-            <div>
-              <Text size="l" weight="bold" color="subtitle">
-                Total
-              </Text>
-              <Text size="l" weight="bold" color="subtitle">
-                R$ {totalPrice}
-              </Text>
-            </div>
-            <ConfirmOrderButton>
-              <p>CONFIRMAR PEDIDO</p>
-            </ConfirmOrderButton>
+        <div className="itemsPrice">
+          <div>
+            <Text size="s">Total de itens</Text>
+            <Text size="m">R$ {totalCoffeesPrice}</Text>
           </div>
-        )}
-        {coffeesInCartQuantity === 0 && (
-          <div className="emptyCardContent">
-            <div className="iconWrapper">
-              <Coffee size={64} weight="light" />
-              <ArrowRight size={32} weight="bold" />
-              <ShoppingCart size={64} weight="light" />
-            </div>
-
-            <Text size="m" color={'subtitle'}>
-              Seu carrinho está vazio...
+          <div>
+            <Text size="s">Entrega</Text>
+            <Text size="m">R$ 7,70</Text>
+          </div>
+          <div>
+            <Text size="l" weight="bold" color="subtitle">
+              Total
+            </Text>
+            <Text size="l" weight="bold" color="subtitle">
+              R$ {totalPrice}
             </Text>
           </div>
-        )}
+          <ConfirmOrderButton clickble={isActive} form="addressForm">
+            <p>CONFIRMAR PEDIDO</p>
+          </ConfirmOrderButton>
+        </div>
       </CardContent>
     </CartContent>
   )

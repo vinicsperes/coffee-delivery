@@ -31,8 +31,6 @@ export function CoffeeCard({ coffee, cartItems }: CoffeeCardProps) {
     foundCoffee ? foundCoffee.quantity : 1,
   )
 
-  console.log('quantity render -> ' + quantity)
-
   function handleIncrease() {
     setQuantity(quantity + 1)
   }

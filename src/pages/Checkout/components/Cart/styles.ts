@@ -5,10 +5,6 @@ export const CartContent = styled.main`
     width: 30rem;
   }
 
-  .purpleBackground {
-    background: ${(props) => props.theme.palette.purple.light};
-  }
-
   .emptyCardContent {
     display: flex;
     flex-direction: column;
@@ -71,15 +67,25 @@ export const DeleteButton = styled.button`
     background: ${(props) => props.theme.palette.base.hover};
   }
 `
+interface ConfirmOrderButtonProps {
+  clickble: string
+}
 
-export const ConfirmOrderButton = styled.button`
-  background: ${(props) => props.theme.palette.yellow.main};
+export const ConfirmOrderButton = styled.button<ConfirmOrderButtonProps>`
   width: 100%;
   height: 2.875rem;
   border-radius: 6px;
   border: none;
 
   margin-top: 2rem;
+
+  cursor: ${(props) =>
+    props.clickble === 'active' ? 'pointer' : 'not-allowed'};
+
+  background: ${(props) =>
+    props.clickble === 'active'
+      ? props.theme.palette.yellow.main
+      : props.theme.palette.yellow.dark};
 
   p {
     font-size: 14px;

@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import '../../global.css'
 
@@ -54,31 +55,38 @@ export const HeaderContainer = styled.div`
   }
 
   .cart {
+  }
+`
+interface CartLinkProps {
+  clickble: string
+}
+
+export const CartLink = styled(NavLink)<CartLinkProps>`
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border-radius: 8px;
+  background: ${(props) => props.theme.palette.yellow.light};
+  position: relative;
+  cursor: ${(props) => (props.clickble === '' ? 'not-allowed' : 'pointer')};
+
+  .itemCounter {
+    position: absolute;
+    right: -0.5rem;
+    top: -0.5rem;
+
+    width: 1.25rem;
+    height: 1.25rem;
+
     display: flex;
+    justify-content: center;
     align-items: center;
-    padding: 8px;
-    border-radius: 8px;
-    background: ${(props) => props.theme.palette.yellow.light};
-    position: relative;
 
-    .itemCounter {
-      position: absolute;
-      right: -0.5rem;
-      top: -0.5rem;
+    border-radius: 999px;
+    background: ${(props) => props.theme.palette.yellow.dark};
 
-      width: 1.25rem;
-      height: 1.25rem;
-
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      border-radius: 999px;
-      background: ${(props) => props.theme.palette.yellow.dark};
-
-      font-size: 14px;
-      font-weight: bold;
-      color: ${(props) => props.theme.palette.white};
-    }
+    font-size: 14px;
+    font-weight: bold;
+    color: ${(props) => props.theme.palette.white};
   }
 `
