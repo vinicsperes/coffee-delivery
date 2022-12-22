@@ -5,9 +5,20 @@ import { CurrencyDollar, MapPin, Timer } from 'phosphor-react'
 import { useTheme } from 'styled-components'
 import { DefaultTheme } from '../../styles/themes/default'
 import { TextWithIcon } from '../Home/components/TextWithIcon'
+import { useLocation } from 'react-router-dom'
 
 export function ConfirmedOrder() {
   const theme = useTheme() as DefaultTheme
+  const location = useLocation()
+  const { address, paymentMethod } = location.state
+  console.log(address.cep)
+  const formatedAddress = 'Entrega em ' + address.rua + ', ' + address.numero
+  
+
+  const formatedAdress = ''
+
+  const formatedAddressAlt =
+    address.bairro + ' - ' + address.cidade + ', ' + address.estado
 
   return (
     <ConfirmedOrderContent>
@@ -22,8 +33,8 @@ export function ConfirmedOrder() {
             icon={
               <MapPin weight="fill" size={16} color={theme.palette.white} />
             }
-            text="Entrega em Rua João Daniel Martinelli, 102"
-            alt="Farrapos - Porto Alegre, RS"
+            text={formatedAddress}
+            alt={formatedAddressAlt}
             color={theme.palette.purple.main}
           />
           <TextWithIcon
@@ -42,7 +53,7 @@ export function ConfirmedOrder() {
               />
             }
             text="Pagamento na entrega"
-            alt="Cartão de Crédito"
+            alt={paymentMethod}
             weight="bold"
             color={theme.palette.yellow.dark}
           />
