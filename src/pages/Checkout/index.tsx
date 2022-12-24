@@ -25,15 +25,41 @@ import { useNavigate } from 'react-router-dom'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
 
+type FormValues = {
+  cep: string
+  rua: string
+  numero: string
+  complemento: string
+  bairro: string
+  cidade: string
+  estado: string
+}
+
+const addressFormValidationSchema = z.object({
+  cep: z.string().length(8, 'O CEP deve conter apenas 8 caracteres'),
+})
+
 export function Checkout() {
   const theme = useTheme() as DefaultTheme
   const navigate = useNavigate()
+  const [paymentMethod, setPaymentMethod] = useState('')
 
+  const { register, handleSubmit, formState } = useForm<FormValues>({
+    resolver: zodResolver(addressFormValidationSchema),
+  })
 
   const onSubmit: SubmitHandler<FormValues> = (address) => {
     navigate('/sucess', { state: { address, paymentMethod } })
   }
 
+  function handleCepFormat(e: any) {
+    e.target.value = e.target.value
+      .replace(/\D/g, '')
+      .replace(/(\d{5})(\d)/, '$1-$2')
+      .replace(/(-\d{3})\d+?$/, '$1')
+  }
+
+  console.log(formState.errors)
   return (
     <CheckoutComponent>
       <div>
@@ -57,19 +83,26 @@ export function Checkout() {
           <form onSubmit={handleSubmit(onSubmit)} id="addressForm">
             <div className="wrapper">
               <div className="row">
-                <InputContent placeholder="CEP" />
+                <InputContent
+                  {...register('cep', { required: true })}
+                  onChange={handleCepFormat}
+                  placeholder="CEP"
+                />
               </div>
               <div className="row second">
-                <InputContent placeholder="Rua" />
+                <InputContent {...register('rua')} placeholder="Rua" />
               </div>
               <div className="row third">
-                <InputContent placeholder="Número" />
-                <InputContent className="caralho" placeholder="Complemento" />
+                <InputContent {...register('numero')} placeholder="Número" />
+                <InputContent
+                  {...register('complemento')}
+                  placeholder="Complemento"
+                />
               </div>
               <div className="row fourth">
-                <InputContent placeholder="Bairro" />
-                <InputContent placeholder="Cidade" />
-                <InputContent placeholder="UF" />
+                <InputContent {...register('bairro')} placeholder="Bairro" />
+                <InputContent {...register('cidade')} placeholder="Cidade" />
+                <InputContent {...register('estado')} placeholder="UF" />
               </div>
             </div>
           </form>
@@ -92,15 +125,15 @@ export function Checkout() {
             </div>
           </InfoSection>
           <SelectPaymentMethod>
-            <button>
+            <button onClick={() => setPaymentMethod('Cartão de Crédito')}>
               <CreditCard size={16} color={theme.palette.purple.main} />
               <p>CARTÃO DE CRÉDITO</p>
             </button>
-            <button>
+            <button onClick={() => setPaymentMethod('Cartão de Débito')}>
               <Bank size={16} color={theme.palette.purple.main} />
               <p>CARTÃO DE DÉBITO</p>
             </button>
-            <button>
+            <button onClick={() => setPaymentMethod('Dinheiro')}>
               <Money size={16} color={theme.palette.purple.main} />
               <p>DINHEIRO</p>
             </button>
