@@ -27,6 +27,12 @@ import * as z from 'zod'
 
 export function Checkout() {
   const theme = useTheme() as DefaultTheme
+  const navigate = useNavigate()
+
+
+  const onSubmit: SubmitHandler<FormValues> = (address) => {
+    navigate('/sucess', { state: { address, paymentMethod } })
+  }
 
   return (
     <CheckoutComponent>
@@ -48,7 +54,7 @@ export function Checkout() {
               </Text>
             </div>
           </InfoSection>
-          <form>
+          <form onSubmit={handleSubmit(onSubmit)} id="addressForm">
             <div className="wrapper">
               <div className="row">
                 <InputContent placeholder="CEP" />
