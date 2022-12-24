@@ -1,3 +1,5 @@
+import { useForm, SubmitHandler } from 'react-hook-form'
+import { useTheme } from 'styled-components'
 import {
   Bank,
   CreditCard,
@@ -5,7 +7,7 @@ import {
   MapPinLine,
   Money,
 } from 'phosphor-react'
-import { useTheme } from 'styled-components'
+
 import { InputContent } from '../../components/FormInput/styles'
 import { DefaultTheme } from '../../styles/themes/default'
 import { Title, Text } from '../../styles/themes/textRule'
@@ -17,6 +19,11 @@ import {
 } from './styles'
 
 import { Cart } from './components/Cart'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+
+import { zodResolver } from '@hookform/resolvers/zod'
+import * as z from 'zod'
 
 export function Checkout() {
   const theme = useTheme() as DefaultTheme
