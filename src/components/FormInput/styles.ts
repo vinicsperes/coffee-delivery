@@ -1,6 +1,11 @@
 import styled from 'styled-components'
 
 export const InputContent = styled.input`
+  ::-webkit-outer-spin-button,
+  ::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
   border-radius: 4px;
   border-width: 1px;
   border-style: solid;

@@ -36,7 +36,12 @@ type FormValues = {
 }
 
 const addressFormValidationSchema = z.object({
-  cep: z.string().length(8, 'O CEP deve conter apenas 8 caracteres'),
+  cep: z.string().length(9, 'Informe o seu CEP'),
+  rua: z.string().min(6, 'Informe o nome da sua rua'),
+  numero: z.string().min(2, 'Informe o número da sua casa'),
+  bairro: z.string().min(3, 'Informe o seu bairro'),
+  cidade: z.string().min(3, 'Informe a sua cidade'),
+  estado: z.string().min(2, 'Informe a sigla do seu estado'),
 })
 
 export function Checkout() {
@@ -48,8 +53,15 @@ export function Checkout() {
     resolver: zodResolver(addressFormValidationSchema),
   })
 
+  let paymentValidation = null
+
   const onSubmit: SubmitHandler<FormValues> = (address) => {
-    navigate('/sucess', { state: { address, paymentMethod } })
+    console.log('paty ' + paymentMethod)
+    if (paymentMethod === '') {
+      paymentValidation = 'Selecione a forma de pagamento'
+    } else {
+      navigate('/sucess', { state: { address, paymentMethod } })
+    }
   }
 
   function handleCepFormat(e: any) {
@@ -93,7 +105,11 @@ export function Checkout() {
                 <InputContent {...register('rua')} placeholder="Rua" />
               </div>
               <div className="row third">
-                <InputContent {...register('numero')} placeholder="Número" />
+                <InputContent
+                  type="number"
+                  {...register('numero')}
+                  placeholder="Número"
+                />
                 <InputContent
                   {...register('complemento')}
                   placeholder="Complemento"
@@ -106,6 +122,17 @@ export function Checkout() {
               </div>
             </div>
           </form>
+          <div>
+            <Text size="s" color="error">
+              {formState.errors.cep?.message ||
+                formState.errors.rua?.message ||
+                formState.errors.numero?.message ||
+                formState.errors.bairro?.message ||
+                formState.errors.cidade?.message ||
+                formState.errors.estado?.message ||
+                paymentValidation}
+            </Text>
+          </div>
         </CardContent>
         <CardContent>
           <InfoSection>
