@@ -17,6 +17,7 @@ export interface DefaultTheme {
       button: string
       input: string
       card: string
+      error: string
     }
     yellow: IPalette
     purple: IPalette

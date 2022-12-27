@@ -11,6 +11,7 @@ export const defaultTheme: DefaultTheme = {
       button: '#E6E5E5',
       input: '#EDEDED',
       card: '#F3F2F2',
+      error: '#FF0000',
     },
     yellow: {
       main: '#DBAC2C',
