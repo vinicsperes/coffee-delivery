@@ -1,5 +1,6 @@
 import { ShoppingCart } from 'phosphor-react'
 import { useContext, useState } from 'react'
+import { toast } from 'react-toastify'
 import { useTheme } from 'styled-components'
 import { Counter } from '../../../../components/Counter'
 import { CartContext, CartItem } from '../../../../contexts/CartContext'
@@ -45,7 +46,21 @@ export function CoffeeCard({ coffee, cartItems }: CoffeeCardProps) {
       quantity,
     }
 
+    notifyNewCoffee()
     addToCart(coffeeToAdd)
+  }
+
+  function notifyNewCoffee() {
+    toast('☕ Café adicionado ao carrinho', {
+      position: 'top-center',
+      autoClose: 2500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+    })
   }
 
   return (

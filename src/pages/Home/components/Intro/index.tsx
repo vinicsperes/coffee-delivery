@@ -6,12 +6,25 @@ import { useTheme } from 'styled-components'
 import { DefaultTheme } from '../../../../styles/themes/default'
 import { TextWithIcon } from '../TextWithIcon'
 import { Text, Title } from '../../../../styles/themes/textRule'
-
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 export function Intro() {
   const theme = useTheme() as DefaultTheme
 
   return (
     <IntroArticle>
+      <ToastContainer
+        position="top-center"
+        autoClose={2500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       <div className="container">
         <div className="info">
           <div className="title">
