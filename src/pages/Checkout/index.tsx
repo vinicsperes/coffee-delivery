@@ -1,4 +1,5 @@
 import { useForm, SubmitHandler } from 'react-hook-form'
+import { useContext, useState } from 'react'
 import { useTheme } from 'styled-components'
 import {
   Bank,
@@ -19,11 +20,11 @@ import {
 } from './styles'
 
 import { Cart } from './components/Cart'
-import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
+import { CartContext } from '../../contexts/CartContext'
 
 type FormValues = {
   cep: string
@@ -45,22 +46,25 @@ const addressFormValidationSchema = z.object({
 })
 
 export function Checkout() {
+  const { emptyCart } = useContext(CartContext)
+
   const theme = useTheme() as DefaultTheme
   const navigate = useNavigate()
   const [paymentMethod, setPaymentMethod] = useState('')
+  const [errorBorder, setErrorBorder] = useState({ border: 'none' })
 
   const { register, handleSubmit, formState } = useForm<FormValues>({
     resolver: zodResolver(addressFormValidationSchema),
   })
 
-  let paymentValidation = null
-
   const onSubmit: SubmitHandler<FormValues> = (address) => {
-    console.log('paty ' + paymentMethod)
-    if (paymentMethod === '') {
-      paymentValidation = 'Selecione a forma de pagamento'
-    } else {
+    if (paymentMethod) {
+      emptyCart()
       navigate('/sucess', { state: { address, paymentMethod } })
+    } else {
+      setErrorBorder({
+        border: '2px solid #8047F8',
+      })
     }
   }
 
@@ -71,7 +75,6 @@ export function Checkout() {
       .replace(/(-\d{3})\d+?$/, '$1')
   }
 
-  console.log(formState.errors)
   return (
     <CheckoutComponent>
       <div>
@@ -129,12 +132,11 @@ export function Checkout() {
                 formState.errors.numero?.message ||
                 formState.errors.bairro?.message ||
                 formState.errors.cidade?.message ||
-                formState.errors.estado?.message ||
-                paymentValidation}
+                formState.errors.estado?.message}
             </Text>
           </div>
         </CardContent>
-        <CardContent>
+        <CardContent style={errorBorder}>
           <InfoSection>
             <div>
               <CurrencyDollar

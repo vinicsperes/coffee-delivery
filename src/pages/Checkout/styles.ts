@@ -15,6 +15,14 @@ export const CardContent = styled.div`
   background: ${(props) => props.theme.palette.base.card};
   border-radius: 6px;
   margin-top: 0.75rem;
+  animation: blink 1.5s;
+  animation-iteration-count: 1;
+  
+  @keyframes blink {
+    50% {
+      border-color: #fff;
+    }
+  }
 
   form {
     input:-webkit-autofill {
@@ -119,8 +127,4 @@ export const SelectPaymentMethod = styled.div`
     border-color: ${(props) => props.theme.palette.purple.main};
     cursor: pointer;
   }
-
-  /* button:focus {
-    border: 1px solid ${(props) => props.theme.palette.purple.main};
-  } */
 `

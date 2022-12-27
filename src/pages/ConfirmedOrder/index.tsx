@@ -13,9 +13,6 @@ export function ConfirmedOrder() {
   const { address, paymentMethod } = location.state
   console.log(address.cep)
   const formatedAddress = 'Entrega em ' + address.rua + ', ' + address.numero
-  
-
-  const formatedAdress = ''
 
   const formatedAddressAlt =
     address.bairro + ' - ' + address.cidade + ', ' + address.estado
