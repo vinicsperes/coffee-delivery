@@ -11,7 +11,6 @@ export function ConfirmedOrder() {
   const theme = useTheme() as DefaultTheme
   const location = useLocation()
   const { address, paymentMethod } = location.state
-  console.log(address.cep)
   const formatedAddress = 'Entrega em ' + address.rua + ', ' + address.numero
 
   const formatedAddressAlt =
